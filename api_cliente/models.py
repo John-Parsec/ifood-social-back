@@ -13,8 +13,8 @@ class AvaliacaoPedido(models.Model):
     cod_avaliacao_pedido = models.IntegerField(db_column='COD_AVALIACAO_PEDIDO', primary_key=True)  # Field name made lowercase.
     num_nota_avaliacao = models.IntegerField(db_column='NUM_NOTA_AVALIACAO', blank=True, null=True)  # Field name made lowercase.
     txt_avaliacao = models.CharField(db_column='TXT_AVALIACAO', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    cod_pedido = models.ForeignKey('Pedido', models.DO_NOTHING, db_column='COD_PEDIDO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_cliente = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='COD_CLIENTE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_pedido = models.ForeignKey('Pedido', models.CASCADE, db_column='COD_PEDIDO')  # Field name made lowercase.
+    cod_cliente = models.ForeignKey('Cliente', models.CASCADE, db_column='COD_CLIENTE')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -24,7 +24,7 @@ class AvaliacaoPedido(models.Model):
 class Bairro(models.Model):
     cod_bairro = models.IntegerField(db_column='COD_BAIRRO', primary_key=True)  # Field name made lowercase.
     dcr_bairro = models.CharField(db_column='DCR_BAIRRO', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    cod_cidade = models.ForeignKey('Cidade', models.DO_NOTHING, db_column='COD_CIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_cidade = models.ForeignKey('Cidade', models.CASCADE, db_column='COD_CIDADE')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -35,7 +35,7 @@ class Cardapio(models.Model):
     cod_cardapio = models.IntegerField(db_column='COD_CARDAPIO', primary_key=True)  # Field name made lowercase.
     dcr_cardapio = models.CharField(db_column='DCR_CARDAPIO', max_length=45, blank=True, null=True)  # Field name made lowercase.
     dcr_titulo_apres = models.CharField(db_column='DCR_TITULO_APRES', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    cod_empreedimento = models.ForeignKey('Empreendimento', models.DO_NOTHING, db_column='COD_EMPREEDIMENTO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -46,7 +46,7 @@ class Categoria(models.Model):
     cod_categoria = models.IntegerField(db_column='COD_CATEGORIA', primary_key=True)  # Field name made lowercase.
     dcr_categoria = models.CharField(db_column='DCR_CATEGORIA', max_length=45, blank=True, null=True)  # Field name made lowercase.
     img_categoria = models.TextField(db_column='IMG_CATEGORIA', blank=True, null=True)  # Field name made lowercase.
-    cod_empreedimento = models.ForeignKey('Empreendimento', models.DO_NOTHING, db_column='COD_EMPREEDIMENTO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -68,9 +68,9 @@ class Cliente(models.Model):
     dcr_endereco = models.CharField(db_column='DCR_ENDERECO', max_length=45, blank=True, null=True)  # Field name made lowercase.
     dcr_complemento = models.CharField(db_column='DCR_COMPLEMENTO', max_length=45, blank=True, null=True)  # Field name made lowercase.
     num_cep = models.CharField(db_column='NUM_CEP', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    cod_cidade = models.ForeignKey(Cidade, models.DO_NOTHING, db_column='COD_CIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_bairro = models.ForeignKey(Bairro, models.DO_NOTHING, db_column='COD_BAIRRO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_localidade = models.ForeignKey('Localidade', models.DO_NOTHING, db_column='COD_LOCALIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_cidade = models.ForeignKey(Cidade, models.CASCADE, db_column='COD_CIDADE')  # Field name made lowercase.
+    cod_bairro = models.ForeignKey(Bairro, models.CASCADE, db_column='COD_BAIRRO')  # Field name made lowercase.
+    cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -82,8 +82,8 @@ class Disponibilidade(models.Model):
     num_dia_semana = models.IntegerField(db_column='NUM_DIA_SEMANA', blank=True, null=True)  # Field name made lowercase.
     hora_fim = models.DateTimeField(db_column='HORA_FIM', blank=True, null=True)  # Field name made lowercase.
     hora_inicio = models.DateTimeField(db_column='HORA_INICIO', blank=True, null=True)  # Field name made lowercase.
-    cod_localidade = models.ForeignKey('Localidade', models.DO_NOTHING, db_column='COD_LOCALIDADE')  # Field name made lowercase.
-    cod_empreedimento = models.ForeignKey('Empreendimento', models.DO_NOTHING, db_column='COD_EMPREEDIMENTO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
+    cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -96,8 +96,8 @@ class DisponExcecao(models.Model):
     tip_excecao = models.CharField(db_column='TIP_EXCECAO', max_length=1, blank=True, null=True)  # Field name made lowercase.
     hora_inicio = models.DateTimeField(db_column='HORA_INICIO', blank=True, null=True)  # Field name made lowercase.
     hora_fim = models.DateTimeField(db_column='HORA_FIM', blank=True, null=True)  # Field name made lowercase.
-    cod_empreedimento = models.ForeignKey('Empreendimento', models.DO_NOTHING, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
-    cod_localidade = models.ForeignKey('Localidade', models.DO_NOTHING, db_column='COD_LOCALIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
+    cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -111,9 +111,9 @@ class Empreendimento(models.Model):
     dcr_endereco = models.CharField(db_column='DCR_ENDERECO', max_length=45, blank=True, null=True)  # Field name made lowercase.
     dcr_complemento = models.CharField(db_column='DCR_COMPLEMENTO', max_length=45, blank=True, null=True)  # Field name made lowercase.
     num_cep = models.CharField(db_column='NUM_CEP', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    cod_cidade = models.ForeignKey(Cidade, models.DO_NOTHING, db_column='COD_CIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
-    bairro_cod_bairro = models.ForeignKey(Bairro, models.DO_NOTHING, db_column='BAIRRO_COD_BAIRRO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_localidade = models.ForeignKey('Localidade', models.DO_NOTHING, db_column='COD_LOCALIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_cidade = models.ForeignKey(Cidade, models.CASCADE, db_column='COD_CIDADE')  # Field name made lowercase.
+    bairro_cod_bairro = models.ForeignKey(Bairro, models.CASCADE, db_column='BAIRRO_COD_BAIRRO')  # Field name made lowercase.
+    cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
     img_empreendimento = models.TextField(db_column='IMG_EMPREENDIMENTO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -124,8 +124,8 @@ class Empreendimento(models.Model):
 class EmprendFuncionario(models.Model):
     cod_empreend_funcionario = models.IntegerField(db_column='COD_EMPREEND_FUNCIONARIO', primary_key=True)  # Field name made lowercase.
     tip_funcionario = models.CharField(db_column='TIP_FUNCIONARIO', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    cod_empreedimento = models.ForeignKey(Empreendimento, models.DO_NOTHING, db_column='COD_EMPREEDIMENTO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_funcionario = models.ForeignKey('Funcionario', models.DO_NOTHING, db_column='COD_FUNCIONARIO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_empreedimento = models.ForeignKey(Empreendimento, models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
+    cod_funcionario = models.ForeignKey('Funcionario', models.CASCADE, db_column='COD_FUNCIONARIO')  # Field name made lowercase.
     img_empreend_funcionario = models.TextField(db_column='IMG_EMPREEND_FUNCIONARIO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -135,8 +135,8 @@ class EmprendFuncionario(models.Model):
 
 class Entrega(models.Model):
     cod_entrega = models.IntegerField(db_column='COD_ENTREGA', primary_key=True)  # Field name made lowercase.
-    cod_pedido = models.ForeignKey('Pedido', models.DO_NOTHING, db_column='COD_PEDIDO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_funcionario = models.ForeignKey('Funcionario', models.DO_NOTHING, db_column='COD_FUNCIONARIO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_pedido = models.ForeignKey('Pedido', models.CASCADE, db_column='COD_PEDIDO')  # Field name made lowercase.
+    cod_funcionario = models.ForeignKey('Funcionario', models.CASCADE, db_column='COD_FUNCIONARIO')  # Field name made lowercase.
     data_saida = models.DateTimeField(db_column='DATA_SAIDA', blank=True, null=True)  # Field name made lowercase.
     data_entrega = models.DateTimeField(db_column='DATA_ENTREGA', blank=True, null=True)  # Field name made lowercase.
     vlr_entrega = models.DecimalField(db_column='VLR_ENTREGA', max_digits=9, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
@@ -144,9 +144,9 @@ class Entrega(models.Model):
     dcr_complem = models.CharField(db_column='DCR_COMPLEM', max_length=45, blank=True, null=True)  # Field name made lowercase.
     num_cep = models.CharField(db_column='NUM_CEP', max_length=10, blank=True, null=True)  # Field name made lowercase.
     txt_referencia = models.CharField(db_column='TXT_REFERENCIA', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    cod_cidade = models.ForeignKey(Cidade, models.DO_NOTHING, db_column='COD_CIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_bairro = models.ForeignKey(Bairro, models.DO_NOTHING, db_column='COD_BAIRRO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_localidade = models.ForeignKey('Localidade', models.DO_NOTHING, db_column='COD_LOCALIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_cidade = models.ForeignKey(Cidade, models.CASCADE, db_column='COD_CIDADE')  # Field name made lowercase.
+    cod_bairro = models.ForeignKey(Bairro, models.CASCADE, db_column='COD_BAIRRO')  # Field name made lowercase.
+    cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
     flag_encomenda = models.CharField(db_column='FLAG_ENCOMENDA', max_length=1, blank=True, null=True)  # Field name made lowercase.
     flag_entregador = models.CharField(db_column='FLAG_ENTREGADOR', max_length=1, blank=True, null=True)  # Field name made lowercase.
 
@@ -190,8 +190,8 @@ class ItemPedido(models.Model):
     vlr_produto = models.DecimalField(db_column='VLR_PRODUTO', max_digits=9, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     qtd_produto = models.DecimalField(db_column='QTD_PRODUTO', max_digits=9, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     vlr_total = models.DecimalField(db_column='VLR_TOTAL', max_digits=9, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    cod_pedido = models.ForeignKey('Pedido', models.DO_NOTHING, db_column='COD_PEDIDO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_produto = models.ForeignKey('Produto', models.DO_NOTHING, db_column='COD_PRODUTO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_pedido = models.ForeignKey('Pedido', models.CASCADE, db_column='COD_PEDIDO')  # Field name made lowercase.
+    cod_produto = models.ForeignKey('Produto', models.CASCADE, db_column='COD_PRODUTO')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -201,8 +201,8 @@ class ItemPedido(models.Model):
 class Localidade(models.Model):
     cod_localidade = models.IntegerField(db_column='COD_LOCALIDADE', primary_key=True)  # Field name made lowercase.
     dcr_localidade = models.CharField(db_column='DCR_LOCALIDADE', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    cod_bairro = models.ForeignKey(Bairro, models.DO_NOTHING, db_column='COD_BAIRRO', on_delete=models.CASCADE)  # Field name made lowercase.
-    localidade_cod_localidade = models.ForeignKey('self', models.DO_NOTHING, db_column='LOCALIDADE_COD_LOCALIDADE', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_bairro = models.ForeignKey(Bairro, models.CASCADE, db_column='COD_BAIRRO')  # Field name made lowercase.
+    localidade_cod_localidade = models.ForeignKey('self', models.CASCADE, db_column='LOCALIDADE_COD_LOCALIDADE')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -214,8 +214,8 @@ class Pedido(models.Model):
     tip_pedido = models.CharField(db_column='TIP_PEDIDO', max_length=1, blank=True, null=True)  # Field name made lowercase.
     data_pedido = models.DateTimeField(db_column='DATA_PEDIDO', blank=True, null=True)  # Field name made lowercase.
     vlr_pedido = models.DecimalField(db_column='VLR_PEDIDO', max_digits=9, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    cod_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='COD_CLIENTE', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_forma_pagto = models.ForeignKey(FormaPagto, models.DO_NOTHING, db_column='COD_FORMA_PAGTO', blank=True, null=True, on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_cliente = models.ForeignKey(Cliente, models.CASCADE, db_column='COD_CLIENTE')  # Field name made lowercase.
+    cod_forma_pagto = models.ForeignKey(FormaPagto, models.CASCADE, db_column='COD_FORMA_PAGTO', blank=True, null=True)  # Field name made lowercase.
     dcr_dados_pagto = models.CharField(db_column='DCR_DADOS_PAGTO', max_length=200, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -229,8 +229,8 @@ class Produto(models.Model):
     img_produto = models.TextField(db_column='IMG_PRODUTO', blank=True, null=True)  # Field name made lowercase.
     vlr_produto = models.DecimalField(db_column='VLR_PRODUTO', max_digits=9, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     flag_disponivel = models.CharField(db_column='FLAG_DISPONIVEL', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    cod_categoria = models.ForeignKey(Categoria, models.DO_NOTHING, db_column='COD_CATEGORIA', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_empreedimento = models.ForeignKey(Empreendimento, models.DO_NOTHING, db_column='COD_EMPREEDIMENTO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_categoria = models.ForeignKey(Categoria, models.CASCADE, db_column='COD_CATEGORIA')  # Field name made lowercase.
+    cod_empreedimento = models.ForeignKey(Empreendimento, models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -239,8 +239,8 @@ class Produto(models.Model):
 
 class RastreamentoPedido(models.Model):
     cod_rastreamento_pedido = models.IntegerField(db_column='COD_RASTREAMENTO_PEDIDO', primary_key=True)  # Field name made lowercase.
-    cod_pedido = models.ForeignKey(Pedido, models.DO_NOTHING, db_column='COD_PEDIDO', on_delete=models.CASCADE)  # Field name made lowercase.
-    cod_evento_pedido = models.ForeignKey(Evento, models.DO_NOTHING, db_column='COD_EVENTO_PEDIDO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_pedido = models.ForeignKey(Pedido, models.CASCADE, db_column='COD_PEDIDO')  # Field name made lowercase.
+    cod_evento_pedido = models.ForeignKey(Evento, models.CASCADE, db_column='COD_EVENTO_PEDIDO')  # Field name made lowercase.
     data_hora_evento = models.DateTimeField(db_column='DATA_HORA_EVENTO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -252,7 +252,7 @@ class SecaoCardapio(models.Model):
     cod_secao_cardapio = models.IntegerField(db_column='COD_SECAO_CARDAPIO', primary_key=True)  # Field name made lowercase.
     dcr_secao_cardapio = models.CharField(db_column='DCR_SECAO_CARDAPIO', max_length=45, blank=True, null=True)  # Field name made lowercase.
     dcr_titulo_apres = models.CharField(db_column='DCR_TITULO_APRES', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    cod_cardapio = models.ForeignKey(Cardapio, models.DO_NOTHING, db_column='COD_CARDAPIO', on_delete=models.CASCADE)  # Field name made lowercase.
+    cod_cardapio = models.ForeignKey(Cardapio, models.CASCADE, db_column='COD_CARDAPIO')  # Field name made lowercase.
     num_ordem = models.IntegerField(db_column='NUM_ORDEM', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -262,8 +262,8 @@ class SecaoCardapio(models.Model):
 
 class SecaoProduto(models.Model):
     cod_secao_produto = models.CharField(db_column='COD_SECAO_PRODUTO', primary_key=True, max_length=45)  # Field name made lowercase.
-    produto_cod_produto = models.ForeignKey(Produto, models.DO_NOTHING, db_column='PRODUTO_COD_PRODUTO', on_delete=models.CASCADE)  # Field name made lowercase.
-    secao_cardapio_cod_secao_cardapio = models.ForeignKey(SecaoCardapio, models.DO_NOTHING, db_column='SECAO_CARDAPIO_COD_SECAO_CARDAPIO', on_delete=models.CASCADE)  # Field name made lowercase.
+    produto_cod_produto = models.ForeignKey(Produto, models.CASCADE, db_column='PRODUTO_COD_PRODUTO')  # Field name made lowercase.
+    secao_cardapio_cod_secao_cardapio = models.ForeignKey(SecaoCardapio, models.CASCADE, db_column='SECAO_CARDAPIO_COD_SECAO_CARDAPIO')  # Field name made lowercase.
     num_ordem = models.CharField(db_column='NUM_ORDEM', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
