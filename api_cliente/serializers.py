@@ -8,9 +8,7 @@ def get_model_serializer(model_):
             fields = '__all__'
     return ModelSerializer
 
-def EventoSerializer():
-    class EventoSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Evento
-            fields = '__all__'
-    return EventoSerializer
+class EventoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Evento
+        fields = '__all__'
