@@ -10,28 +10,28 @@ def eventos(request):
     if request.method == 'GET':
         evento = Evento.objects.all()
         serializer = EventoSerializer(evento, many=True)
-        return Response(serializer.data, safe=False)
+        return Response(serializer.data)
     elif request.method == 'POST':
         serializer = EventoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, safe=False)
-        return Response(serializer.errors, safe=False)
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def evento(request, id):
     if request.method == 'DELETE':
         evento = Evento.objects.get(id=id)
         evento.delete()
-        return Response({'message': 'Evento deletado com sucesso!'}, safe=False)
+        return Response({'message': 'Evento deletado com sucesso!'})
     elif request.method == 'PUT':
         evento = Evento.objects.get(id=id)
         serializer = EventoSerializer(evento, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, safe=False)
-        return Response(serializer.errors, safe=False)
+            return Response(serializer.data)
+        return Response(serializer.errors)
     elif request.method == 'GET':
         evento = Evento.objects.get(id=id)
         serializer = EventoSerializer(evento)
-        return Response(serializer.data, safe=False)
+        return Response(serializer.data)
