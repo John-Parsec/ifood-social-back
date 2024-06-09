@@ -9,10 +9,10 @@ from .serializers import *
 def eventos(request):
     if request.method == 'GET':
         evento = Evento.objects.all()
-        serializer = get_model_serializer(evento, many=True)
+        serializer = EventoSerializer(evento, many=True)
         return Response(serializer.data, safe=False)
     elif request.method == 'POST':
-        serializer = get_model_serializer(data=request.data)
+        serializer = EventoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, safe=False)
@@ -26,12 +26,12 @@ def evento(request, id):
         return Response({'message': 'Evento deletado com sucesso!'}, safe=False)
     elif request.method == 'PUT':
         evento = Evento.objects.get(id=id)
-        serializer = get_model_serializer(evento, data=request.data)
+        serializer = EventoSerializer(evento, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, safe=False)
         return Response(serializer.errors, safe=False)
     elif request.method == 'GET':
         evento = Evento.objects.get(id=id)
-        serializer = get_model_serializer(evento)
+        serializer = EventoSerializer(evento)
         return Response(serializer.data, safe=False)
