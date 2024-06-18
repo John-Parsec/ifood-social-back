@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-3u(yiyiesib7jo1r+2=!kq=(ep8kslyf)(8hkc)xsh-xdudctx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api_cliente',
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'ifoodsocial.urls'
 
 TEMPLATES = [
@@ -82,7 +84,7 @@ DATABASES = {
         'USER': 'teste',
         'PASSWORD': 'teste123',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 
