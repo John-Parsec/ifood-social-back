@@ -253,8 +253,13 @@ def dispon_excecao(request, id):
 @api_view(['GET', 'POST'])
 def empreendimentos(request):
     if request.method == 'GET':
-        empreendimento = Empreendimento.objects.all()
-        serializer = EmpreendimentoSerializer(empreendimento, many=True)
+        nome_busca = request.GET.get('query_name', None)
+        if nome_busca:
+            empreendimento = Empreendimento.objects.filter(dcr_nome_fantasia__icontains=nome_busca)
+            serializer = EmpreendimentoSerializer(empreendimento, many=True)
+        else:
+            empreendimento = Empreendimento.objects.all()
+            serializer = EmpreendimentoSerializer(empreendimento, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = EmpreendimentoSerializer(data=request.data)
@@ -280,6 +285,33 @@ def empreendimento(request, id):
         empreendimento = Empreendimento.objects.get(id=id)
         serializer = EmpreendimentoSerializer(empreendimento)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def emprd_disponibilidade(request, id_empreendimento):
+    emprd_disponibilidade = Disponibilidade.objects.filter(cod_empreedimento=id_empreendimento)
+    serializer = DisponibilidadeSerializer(emprd_disponibilidade, many=True)
+    return Response(serializer.data)
+
+
+def categorias_json(request, id_empreendimento):
+    categorias = Categoria.objects.filter(cod_empreedimento=id_empreendimento)
+    categorias_data = []
+
+    for categoria in categorias:
+        produtos = categoria.produto_set.all()
+        produtos_data = []
+        for produto in produtos:
+            produtos_data.append(produto)
+        categorias_data.append({
+            'cod_categoria': categoria.cod_categoria,
+            'dcr_categoria': categoria.dcr_categoria,
+            'img_categoria': categoria.img_categoria,
+            'produtos': ProdutoSerializer(produtos_data, many=True).data
+        })
+
+    return JsonResponse(categorias_data, safe=False)
+
+
 
 @api_view(['GET', 'POST'])
 def emprend_funcionarios(request):

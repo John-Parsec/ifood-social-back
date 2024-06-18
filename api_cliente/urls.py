@@ -28,6 +28,8 @@ urlpatterns = [
     
     path('empreendimentos/', empreendimentos),
     path('empreendimento/<int:id>/', empreendimento),
+    path('empreendimento/<int:id_empreendimento>/disponibilidades/', emprd_disponibilidade),
+    path('empreendimento/<int:id_empreendimento>/categorias/', categorias_json),
     
     path('empreend_funcionarios/', emprend_funcionarios),
     path('empreend_funcionario/<int:id>/', emprend_funcionario),
