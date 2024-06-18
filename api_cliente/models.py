@@ -17,7 +17,6 @@ class AvaliacaoPedido(models.Model):
     cod_cliente = models.ForeignKey('Cliente', models.CASCADE, db_column='COD_CLIENTE')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'AVALIACAO_PEDIDO'
 
 
@@ -27,7 +26,6 @@ class Bairro(models.Model):
     cod_cidade = models.ForeignKey('Cidade', models.CASCADE, db_column='COD_CIDADE')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'BAIRRO'
 
 
@@ -38,7 +36,6 @@ class Cardapio(models.Model):
     cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'CARDAPIO'
 
 
@@ -49,7 +46,6 @@ class Categoria(models.Model):
     cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'CATEGORIA'
 
 
@@ -58,7 +54,6 @@ class Cidade(models.Model):
     dcr_cidade = models.CharField(db_column='DCR_CIDADE', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'CIDADE'
 
 
@@ -73,7 +68,6 @@ class Cliente(models.Model):
     cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'CLIENTE'
 
 
@@ -86,7 +80,6 @@ class Disponibilidade(models.Model):
     cod_empreedimento = models.ForeignKey('Empreendimento', models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'DISPONIBILIDADE'
 
 
@@ -100,7 +93,6 @@ class DisponExcecao(models.Model):
     cod_localidade = models.ForeignKey('Localidade', models.CASCADE, db_column='COD_LOCALIDADE')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'DISPON_EXCECAO'
 
 
@@ -117,7 +109,6 @@ class Empreendimento(models.Model):
     img_empreendimento = models.TextField(db_column='IMG_EMPREENDIMENTO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'EMPREENDIMENTO'
 
 
@@ -129,7 +120,6 @@ class EmprendFuncionario(models.Model):
     img_empreend_funcionario = models.TextField(db_column='IMG_EMPREEND_FUNCIONARIO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'EMPREND_FUNCIONARIO'
 
 
@@ -151,7 +141,6 @@ class Entrega(models.Model):
     flag_entregador = models.CharField(db_column='FLAG_ENTREGADOR', max_length=1, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'ENTREGA'
 
 
@@ -161,7 +150,6 @@ class Evento(models.Model):
     num_ordem_evento = models.IntegerField(db_column='NUM_ORDEM_EVENTO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'EVENTO'
 
 
@@ -170,7 +158,6 @@ class FormaPagto(models.Model):
     dcr_forma_pagto = models.CharField(db_column='DCR_FORMA_PAGTO', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'FORMA_PAGTO'
 
 
@@ -181,7 +168,6 @@ class Funcionario(models.Model):
     dcr_email = models.CharField(db_column='DCR_EMAIL', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'FUNCIONARIO'
 
 
@@ -194,7 +180,6 @@ class ItemPedido(models.Model):
     cod_produto = models.ForeignKey('Produto', models.CASCADE, db_column='COD_PRODUTO')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'ITEM_PEDIDO'
 
 
@@ -205,7 +190,6 @@ class Localidade(models.Model):
     localidade_cod_localidade = models.ForeignKey('self', models.CASCADE, db_column='LOCALIDADE_COD_LOCALIDADE')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'LOCALIDADE'
 
 
@@ -219,7 +203,6 @@ class Pedido(models.Model):
     dcr_dados_pagto = models.CharField(db_column='DCR_DADOS_PAGTO', max_length=200, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'PEDIDO'
 
 
@@ -233,7 +216,6 @@ class Produto(models.Model):
     cod_empreedimento = models.ForeignKey(Empreendimento, models.CASCADE, db_column='COD_EMPREEDIMENTO')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'PRODUTO'
 
 
@@ -244,7 +226,6 @@ class RastreamentoPedido(models.Model):
     data_hora_evento = models.DateTimeField(db_column='DATA_HORA_EVENTO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'RASTREAMENTO_PEDIDO'
 
 
@@ -256,7 +237,6 @@ class SecaoCardapio(models.Model):
     num_ordem = models.IntegerField(db_column='NUM_ORDEM', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'SECAO_CARDAPIO'
 
 
@@ -267,5 +247,4 @@ class SecaoProduto(models.Model):
     num_ordem = models.CharField(db_column='NUM_ORDEM', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'SECAO_PRODUTO'
