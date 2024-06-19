@@ -570,8 +570,13 @@ def pedido(request, id):
 @api_view(['GET', 'POST'])
 def produtos(request):
     if request.method == 'GET':
-        produto = Produto.objects.all()
-        serializer = ProdutoSerializer(produto, many=True)
+        nome_busca = request.GET.get('query_name', None)
+        if nome_busca:
+            produtos = Produto.objects.filter(dcr_produto__icontains=nome_busca)
+            serializer = ProdutoSerializer(produtos, many=True)
+        else:
+            produtos = Produto.objects.all()
+            serializer = ProdutoSerializer(produtos, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = ProdutoSerializer(data=request.data)
