@@ -271,18 +271,18 @@ def empreendimentos(request):
 @api_view(['GET', 'DELETE', 'PUT'])
 def empreendimento(request, id):
     if request.method == 'DELETE':
-        empreendimento = Empreendimento.objects.get(id=id)
+        empreendimento = Empreendimento.objects.get(cod_empreedimento=id)
         empreendimento.delete()
         return Response({'message': 'Empreendimento deletado com sucesso!'})
     elif request.method == 'PUT':
-        empreendimento = Empreendimento.objects.get(id=id)
+        empreendimento = Empreendimento.objects.get(cod_empreedimento=id)
         serializer = EmpreendimentoSerializer(empreendimento, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
     elif request.method == 'GET':
-        empreendimento = Empreendimento.objects.get(id=id)
+        empreendimento = Empreendimento.objects.get(cod_empreedimento=id)
         serializer = EmpreendimentoSerializer(empreendimento)
         return Response(serializer.data)
 
