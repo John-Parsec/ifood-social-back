@@ -14,7 +14,7 @@ Siga estes passos para instalar o projeto:
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/johnparsec/ifood-social-back.git
+    git clone https://github.com/John-Parsec/ifood-social-back.git
     ```
 
 2. Navegue até o diretório do projeto:
