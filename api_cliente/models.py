@@ -248,3 +248,6 @@ class SecaoProduto(models.Model):
 
     class Meta:
         db_table = 'SECAO_PRODUTO'
+        
+        
+print("teste")

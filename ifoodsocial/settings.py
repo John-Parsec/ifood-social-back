@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'IFOODSOCIAL',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'teste',
+        'PASSWORD': 'teste123',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 
